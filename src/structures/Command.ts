@@ -7,7 +7,7 @@ export class Command {
       try {
         await runner(arg);
       } catch (err) {
-        // console.error(err);
+        console.error(err);
         await arg.interaction.followUp(err.message);
       }
     };
