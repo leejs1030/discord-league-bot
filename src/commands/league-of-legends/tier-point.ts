@@ -11,7 +11,7 @@ export default new Command({
     const { id: summonerId } = await getSummonerByNickname(nickname);
     const { tier, rank, leaguePoints } = await getSoloRankTier(summonerId);
 
-    return interaction.followUp(`${tier} ${rank}, ${leaguePoints}lp`);
+    return interaction.followUp(`${nickname}의 티어\n${tier} ${rank}, ${leaguePoints}lp`);
   },
   options: [
     {
