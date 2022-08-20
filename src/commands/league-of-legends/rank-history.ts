@@ -17,7 +17,7 @@ export default new Command({
       games.map((game) => getShortInfoByGame({ puuid, game, date })),
     );
 
-    const string = `${nickname}의 전적\n${history.join('\n')}`;
+    const string = `${nickname}의 솔로 랭크 전적\n${history.join('\n')}`;
     return interaction.followUp(string);
   },
   options: [
