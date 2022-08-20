@@ -54,7 +54,7 @@ export class ExtendedClient extends Client {
         guildId: process.env.guildId,
       });
 
-      Cron.schedule('0 0 * * * *', async () => {
+      Cron.schedule('0 0 15 * * *', async () => {
         const channel = this.channels.cache.get(process.env.CHANNEL) as any;
         const msg = await tierBriefing();
         channel.send(msg);
