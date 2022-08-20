@@ -55,12 +55,8 @@ export class ExtendedClient extends Client {
       });
 
       Cron.schedule('0 0 * * * *', async () => {
-        console.log('a');
         const channel = this.channels.cache.get(process.env.CHANNEL) as any;
-        console.log(channel);
-        console.log(typeof channel);
         const msg = await tierBriefing();
-        console.log(msg);
         channel.send(msg);
       });
     });
