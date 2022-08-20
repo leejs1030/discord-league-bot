@@ -4,7 +4,9 @@ import glob from 'glob';
 import { promisify } from 'util';
 import { RegisterCommandsOptions } from '../typings/client';
 import { Event } from './Event';
+import { tierBriefing } from '../cron/tier-briefing';
 
+const Cron = require('node-cron');
 const globPromise = promisify(glob);
 
 export class ExtendedClient extends Client {
@@ -50,6 +52,16 @@ export class ExtendedClient extends Client {
       this.registerCommands({
         commands: slashCommands,
         guildId: process.env.guildId,
+      });
+
+      Cron.schedule('0 0 * * * *', async () => {
+        console.log('a');
+        const channel = this.channels.cache.get(process.env.CHANNEL) as any;
+        console.log(channel);
+        console.log(typeof channel);
+        const msg = await tierBriefing();
+        console.log(msg);
+        channel.send(msg);
       });
     });
 

@@ -1,8 +1,8 @@
-import { Command } from '../../structures/Command';
+import { Command } from '../../../structures/Command';
 import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
-import { getSummonerByNickname } from '../../libs/riot/get-summoner-by-nickname';
-import { getSoloRankHistory } from '../../libs/riot/get-solo-rank-history';
-import { getShortInfoByGame } from '../../libs/riot/get-short-info-by-game';
+import { getSummonerByNickname } from '../../../libs/riot/get-summoner-by-nickname';
+import { getSoloRankHistory } from '../../../libs/riot/get-solo-rank-history';
+import { getShortInfoByGame } from '../../../libs/riot/get-short-info-by-game';
 
 export default new Command({
   name: 'games',
