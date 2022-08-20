@@ -13,7 +13,9 @@ export default new Command({
     const games = await getSoloRankHistory(puuid);
     const date = new Date();
 
-    const history = games.map((game) => getShortInfoByGame({ puuid, game, date }));
+    const history = await Promise.all(
+      games.map((game) => getShortInfoByGame({ puuid, game, date })),
+    );
 
     const string = `${nickname}의 전적\n${history.join('\n')}`;
     return interaction.followUp(string);
