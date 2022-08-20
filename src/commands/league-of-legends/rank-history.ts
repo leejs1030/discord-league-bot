@@ -26,9 +26,10 @@ export default new Command({
       const { championName, teamId, individualPosition } = participants.filter(
         (participant) => participant.puuid === puuid,
       )[0];
-      const duration = participants.reduce((acc, cur) => {
-        return acc >= cur.timePlayed ? acc : cur.timePlayed;
-      }, -1);
+      const duration =
+        participants.reduce((acc, cur) => {
+          return acc >= cur.timePlayed ? acc : cur.timePlayed;
+        }, -1) * 1000;
       const win = teams.filter((team) => team.teamId === teamId)[0].win;
       const endDate = new Date(duration + gameCreation);
       const time = getTimeDiff(date, endDate);
