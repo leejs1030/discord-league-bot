@@ -1,9 +1,8 @@
 import { Command } from '../../structures/Command';
 import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
 import { getSummonerByNickname } from '../../libs/riot/get-summoner-by-nickname';
-import { getSoloRankMatchIds } from '../../libs/riot/get-solo-rank-match-ids';
-import { getGamesByMatchIds } from '../../libs/riot/get-games-by-match-ids';
 import { getTimeDiff } from '../../libs/utils/get-time-diff';
+import { getSoloRankHistory } from '../../libs/riot/get-solo-rank-history';
 
 const positionMapper = {
   UTILITY: '서폿',
@@ -19,8 +18,7 @@ export default new Command({
   run: async ({ interaction }) => {
     const nickname = interaction.options.data[0].value as string;
     const { puuid } = await getSummonerByNickname(nickname);
-    const arr = await getSoloRankMatchIds(puuid);
-    const games = await getGamesByMatchIds(arr);
+    const games = await getSoloRankHistory(puuid);
     const date = new Date();
 
     const history = games.map((game) => {
