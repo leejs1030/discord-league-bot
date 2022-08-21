@@ -38,10 +38,10 @@ export class ExtendedClient extends Client {
   async registerModules() {
     // Commands
     const slashCommands: ApplicationCommandDataResolvable[] = [];
-    const commandFiles = await globPromise(`${__dirname}/../commands/*/*{.ts,.js}`);
+    const commandFiles = await globPromise(`${__dirname}/../commands/**/*{.ts,.js}`);
     for await (const filePath of commandFiles) {
       const command: CommandType = await this.importFile(filePath);
-      if (!command.name) continue;
+      if (!command || !command.name) continue;
       console.log(command);
 
       this.commands.set(command.name, command);
