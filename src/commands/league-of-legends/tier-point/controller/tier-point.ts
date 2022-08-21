@@ -1,6 +1,6 @@
-import { Command } from '../../../structures/Command';
+import { Command } from '../../../../structures/Command';
 import { ApplicationCommandOptionTypes } from 'discord.js/typings/enums';
-import { getTierMsgByNickname } from './get-tier-msg-by-nickname';
+import { getTierMsgByNickname } from '../service/get-tier-msg-by-nickname';
 
 export default new Command({
   name: 'lp',

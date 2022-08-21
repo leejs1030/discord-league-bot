@@ -1,4 +1,4 @@
-import { getTierMsgByNickname } from '../commands/league-of-legends/tier-point/get-tier-msg-by-nickname';
+import { getTierMsgByNickname } from '../commands/league-of-legends/tier-point/service/get-tier-msg-by-nickname';
 
 const users = typeof process.env.USERS === 'string' ? process.env.USERS.split(',') : [];
 

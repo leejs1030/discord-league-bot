@@ -1,5 +1,5 @@
-import { getSummonerByNickname } from '../../../libs/riot/get-summoner-by-nickname';
-import { getSoloRankTier } from '../../../libs/riot/get-solo-rank-tier';
+import { getSummonerByNickname } from '../../../../libs/riot/get-summoner-by-nickname';
+import { getSoloRankTier } from '../../../../libs/riot/get-solo-rank-tier';
 
 export const getTierMsgByNickname = async (nickname: string) => {
   const { id: summonerId } = await getSummonerByNickname(nickname);
