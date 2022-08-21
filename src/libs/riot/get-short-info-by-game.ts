@@ -8,6 +8,8 @@ const positionMapper = {
   BOTTOM: '원딜',
 };
 
+export const championNameMapeer = {};
+
 export const getShortInfoByGame = async ({
   puuid,
   game,
@@ -18,7 +20,7 @@ export const getShortInfoByGame = async ({
   date: Date;
 }) => {
   const { gameCreation, participants, teams } = game.info;
-  const { championName, teamId, individualPosition } = participants.filter(
+  const { championName, teamId, individualPosition, kills, assists, deaths } = participants.filter(
     (participant) => participant.puuid === puuid,
   )[0];
   const duration =
@@ -30,5 +32,5 @@ export const getShortInfoByGame = async ({
   const time = getTimeDiff(date, endDate);
 
   const wl = win ? '승' : '패';
-  return `${championName}(${positionMapper[individualPosition]}), ${wl}, ${time}`;
+  return `${wl}\t${time}\t${kills}/${deaths}/${assists}\t${championNameMapeer[championName]}(${positionMapper[individualPosition]})`;
 };

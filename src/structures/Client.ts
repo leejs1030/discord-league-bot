@@ -5,6 +5,8 @@ import { promisify } from 'util';
 import { RegisterCommandsOptions } from '../typings/client';
 import { Event } from './Event';
 import { tierBriefing } from '../cron/tier-briefing';
+import axios from 'axios';
+import { championNameMapeer } from '../libs/riot/get-short-info-by-game';
 
 const Cron = require('node-cron');
 const globPromise = promisify(glob);
@@ -67,5 +69,17 @@ export class ExtendedClient extends Client {
       const event: Event<keyof ClientEvents> = await this.importFile(filePath);
       this.on(event.event, event.run);
     }
+
+    const tmp = await axios
+      .get('http://ddragon.leagueoflegends.com/cdn/12.15.1/data/ko_KR/champion.json')
+      .then((res) => {
+        const { data } = res.data;
+        const keys = Object.keys(data);
+        return keys.reduce((acc, cur) => {
+          acc = { ...acc, [cur]: data[cur].name };
+          return acc;
+        }, {});
+      });
+    Object.assign(championNameMapeer, tmp);
   }
 }
