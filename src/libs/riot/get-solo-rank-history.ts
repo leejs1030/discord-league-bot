@@ -11,5 +11,5 @@ export const getSoloRankHistory = async (puuid) => {
     soloRankGames = [...soloRankGames, ...games];
     if (arr.length < 10) break;
   }
-  return soloRankGames;
+  return soloRankGames.slice(0, 10);
 };
