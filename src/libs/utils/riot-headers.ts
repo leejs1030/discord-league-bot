@@ -1,4 +1,4 @@
-export const headers = {
+export const riotHeaders = {
   Origin: 'https://developer.riotgames.com',
   'Accept-Charset': 'application/x-www-form-urlencoded; charset=UTF-8',
   'X-Riot-Token': process.env.riotKey,

@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { headers } from './headers';
+import riotAxios from '../utils/riot-axios';
 
 const baseUrl = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name';
 
@@ -15,8 +14,8 @@ export const getSummonerByNickname = async (
   name: string;
 }> => {
   const encodedNickname = encodeURIComponent(nickname);
-  return axios
-    .get(`${baseUrl}/${encodedNickname}`, { headers })
+  return riotAxios
+    .get(`${baseUrl}/${encodedNickname}`)
     .then((res) => {
       if (!res.data.id) throw new Error();
       return res.data;
