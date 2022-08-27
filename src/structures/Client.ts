@@ -61,6 +61,16 @@ export class ExtendedClient extends Client {
         const msg = await tierBriefing();
         channel.send(msg);
       });
+
+      Cron.schedule('0 */5 * * * *', async () => {
+        const channel = this.channels.cache.get(process.env.CHANNEL) as any;
+        const userIdArr = process.env.DISCORD_USERS_ID.split(',');
+        const userNameArr = process.env.DISCORD_USERS_NAME.split(',');
+        const msg = userIdArr.map((id, idx) =>
+          channel.send(`<@${id}> ${userNameArr[idx]}\n이럴 때가 아님\n알파벳 모으셈`),
+        );
+        Promise.all(msg);
+      });
     });
 
     // Event
